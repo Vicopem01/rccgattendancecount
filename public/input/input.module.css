@@ -1,0 +1,12 @@
+.red {
+  color: #eb6c63;
+  display: block;
+  font-size: 14px;
+  padding-left: 30px;
+}
+
+.error {
+  display: block;
+  border: 1px solid #eb6c63 !important;
+  border-radius: 10px;
+}
