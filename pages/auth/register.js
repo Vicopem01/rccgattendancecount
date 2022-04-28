@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import Email from "../../public/images/email.png";
 import Lock from "../../public/images/lock.png";
-import Logo from "../../public/images/logo.png";
 import Avatar from "../../public/images/avatar.png";
 import Phone from "../../public/images/phone.png";
 import Date from "../../public/images/date.png";
@@ -14,8 +13,10 @@ import { emailCheck, extractNumber, register } from "../../public/apis";
 import { toast } from "react-toastify";
 import Input from "../../public/input/input";
 import Loader from "../../public/images/authLoader.svg";
+import { useRouter } from "next/router";
 
-const Login = () => {
+const Register = () => {
+  let router = useRouter();
   const [load, setLoad] = useState(false);
   const [data, setData] = useState({
     name: "",
@@ -41,7 +42,8 @@ const Login = () => {
       try {
         setLoad(true);
         const res = await register(data);
-        console.log(res);
+        localStorage.setItem("token", res.data.token);
+        router.push("/");
         setLoad(false);
       } catch (error) {
         setLoad(false);
@@ -51,18 +53,10 @@ const Login = () => {
       }
     }
   };
+
   return (
     <div className={`white ${classes.parent}`}>
-      <div className={classes.logo}>
-        <Link href="/">
-          <div>
-            <Image src={Logo} width={50} height={50} alt="Logo" />
-          </div>
-        </Link>
-      </div>
       <div className={classes.container}>
-        <Link href="/auth/login">Sign In</Link>
-        <p className={classes.welcome}>Welcome!</p>
         <h2 className={classes.bigtext}>
           Create your RCCG Fellowship account here
         </h2>
@@ -148,7 +142,7 @@ const Login = () => {
                 }))
               }
               value={data.DOB}
-              type="month"
+              type="date"
               message="Invalid date of birth"
               name="date of birth"
             />
@@ -180,9 +174,10 @@ const Login = () => {
               value={cpass}
             />
           </div>
-          <Link href="/auth/forgot-password">
-            <a className={classes.forgot}>Forgot password?</a>
-          </Link>
+          <div className={classes.links}>
+            <Link href="/auth/login">Sign In</Link>
+            <Link href="/auth/forgot-password">Forgot password?</Link>
+          </div>
           {load && (
             <div className="center-flex">
               <Image src={Loader} alt="loading..." />
@@ -190,7 +185,7 @@ const Login = () => {
           )}
           {!load && (
             <button className={classes.btn} onClick={handleSubmit}>
-              Sign In
+              Register
             </button>
           )}
         </form>
@@ -199,8 +194,8 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
 
-Login.getLayout = function getLayout(page) {
+Register.getLayout = function getLayout(page) {
   return <Auth>{page}</Auth>;
 };

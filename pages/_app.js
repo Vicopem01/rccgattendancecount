@@ -5,8 +5,10 @@ import Head from "next/head";
 import { useState, useEffect } from "react";
 import { AppContext } from "../public/context";
 import { getUserProfile } from "../public/apis";
+import { useRouter } from "next/router";
 
 const MyApp = ({ Component, pageProps }) => {
+  let router = useRouter();
   const [info, setInfo] = useState({
     isAuthenticated: false,
     user: null,
@@ -23,14 +25,14 @@ const MyApp = ({ Component, pageProps }) => {
           isAuthenticated: true,
         }));
       } catch (error) {
-        router.push("/auth/login");
+        if (router.pathname === "/") router.push("/auth/login");
         error.response
           ? toast.error(error.response.data.message)
           : toast.error(error.message);
       }
     };
     getUser();
-  }, []);
+  }, [router.pathname]);
   const getLayout = Component.getLayout || ((page) => page);
 
   return getLayout(

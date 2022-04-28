@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import Email from "../../public/images/email.png";
 import Lock from "../../public/images/lock.png";
-import Logo from "../../public/images/logo.png";
 import { useState } from "react";
 import { login } from "../../public/apis";
 import { toast } from "react-toastify";
@@ -40,18 +39,10 @@ const Login = () => {
       setLoad(false);
     }
   };
+
   return (
     <div className={`white ${classes.parent}`}>
-      <div className={classes.logo}>
-        <Link href="/">
-          <div>
-            <Image src={Logo} width={80} height={80} alt="Logo" />
-          </div>
-        </Link>
-      </div>
       <div className={classes.container}>
-        <Link href="/auth/register"> Create account</Link>
-        <p className={classes.welcome}>Welcome back!</p>
         <h2 className={classes.bigtext}>
           Sign in to your RCCG Seed of Joy account
         </h2>
@@ -93,9 +84,14 @@ const Login = () => {
               />
             </label>
           </div>
-          <Link href="/auth/forgot-password">
-            <a className={classes.forgot}>Forgot password?</a>
-          </Link>
+          <div className={classes.links}>
+            <Link href="/auth/register"> Create account</Link>
+            <Link href="/auth/forgot-password">
+              {/* <a className={classes.forgot}> */}
+              Forgot password?
+              {/* </a> */}
+            </Link>
+          </div>
           {load && (
             <div className="center-flex">
               <Image src={Loader} alt="loading..." />
