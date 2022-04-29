@@ -3,7 +3,6 @@ import Auth from "../auth";
 import Link from "next/link";
 import Image from "next/image";
 import Email from "../../public/images/email.png";
-import Lock from "../../public/images/lock.png";
 import Avatar from "../../public/images/avatar.png";
 import Phone from "../../public/images/phone.png";
 import Date from "../../public/images/date.png";
@@ -22,18 +21,15 @@ const Register = () => {
   const [data, setData] = useState({
     name: "",
     email: "",
-    password: "",
     DOB: "",
     gender: "Choose Gender",
     phone_number: "",
   });
-  const [cpass, setCpass] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (
       data.name.length < 4 ||
       !emailCheck(data.email) ||
-      data.password !== cpass ||
       data.DOB === "" ||
       data.gender === "Choose Gender" ||
       data.phone_number.length < 11
@@ -58,9 +54,9 @@ const Register = () => {
   return (
     <div className={`white ${classes.parent}`}>
       <div className={classes.container}>
-          <div className="center-flex">
-            <Image src={Logo} alt="Logo" width={120} height={100} />
-          </div>
+        <div className="center-flex">
+          <Image src={Logo} alt="Logo" width={120} height={100} />
+        </div>
         <h2 className={classes.bigtext}>
           Create your RCCG Seed of Excellence account here
         </h2>
@@ -149,33 +145,6 @@ const Register = () => {
               type="date"
               message="Invalid date of birth"
               name="date of birth"
-            />
-            <span className={classes.line}></span>
-            <Input
-              src={Lock}
-              isValid={data.password.length > 5}
-              placeholder="Password"
-              onChange={(e) =>
-                setData((prevState) => ({
-                  ...prevState,
-                  password: e.target.value,
-                }))
-              }
-              type="password"
-              value={data.password}
-              message="Password too short"
-              name="new-password"
-            />
-            <span className={classes.line}></span>
-            <Input
-              src={Lock}
-              isValid={data.password === cpass}
-              placeholder="Confirm Password"
-              onChange={(e) => setCpass(e.target.value)}
-              type="password"
-              message="Password don't match"
-              name="confirm-password"
-              value={cpass}
             />
           </div>
           <div className={classes.links}>
