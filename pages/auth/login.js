@@ -44,11 +44,9 @@ const Login = () => {
   return (
     <div className={`white ${classes.parent}`}>
       <div className={classes.container}>
-      <Link href="/">
           <div className="center-flex">
             <Image src={Logo} alt="Logo" width={120} height={100} />
           </div>
-        </Link>
         <h2 className={classes.bigtext}>
           Sign in to your RCCG Seed of Excellence account
         </h2>
