@@ -67,8 +67,8 @@ const Home = () => {
       <main className={classes.main}>
         <div>
           <div className={`white ${classes.card}`}>
-            <h2>Welcome to the Fellowship</h2>
-            <p>RCCG Seed of Joy chapel, Sagamu Branch</p>
+            <h2>Welcome to the church</h2>
+            <p>RCCG Seed of Excellence (Raising Excellent Minds)</p>
             <div className={classes.img}>
               <Image src={People} width={150} height={150} alt="People" />
             </div>

@@ -35,7 +35,7 @@ const Login = () => {
       router.push("/");
     } catch (error) {
       error.response
-        ? toast.error(error.response.data.message)
+        ? toast.error(error.response.data)
         : toast.error(error.message);
       setLoad(false);
     }

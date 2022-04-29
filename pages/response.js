@@ -11,7 +11,12 @@ const Reponse = () => {
           Beloved
           {!!info.isAuthenticated && ` ${info.user.name.toUpperCase()}, `}
           <br />
-          attendance has been saved, thank you for coming
+          <br />
+          Thank you for coming
+          <br />
+          <br />
+          <br />
+           No Church without you
         </p>
       </div>
     </main>
