@@ -9,7 +9,9 @@
   margin: 5rem auto auto auto;
 }
 .bigtext {
-  margin: 20px 0;
+  margin: 30px 0;
+  font-size: 20px;
+  text-align: center;
 }
 .forgot {
   margin: 30px 0;

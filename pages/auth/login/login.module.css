@@ -7,12 +7,14 @@
 .container {
   width: 90%;
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 .bigtext {
-  margin: 20px 0;
+  margin: 30px 0;
+  font-size: 20px;
+  text-align: center;
 }
 .forgot {
   margin: 30px 0;

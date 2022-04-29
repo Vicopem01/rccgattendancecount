@@ -26,9 +26,8 @@ const MyApp = ({ Component, pageProps }) => {
         }));
       } catch (error) {
         if (router.pathname === "/") router.push("/auth/login");
-        error.response
-          ? toast.error(error.response.data.message)
-          : toast.error(error.message);
+        if (!!error.response) toast.error(error.response.data.message);
+        else toast.error(error.message);
       }
     };
     getUser();

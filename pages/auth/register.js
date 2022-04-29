@@ -14,6 +14,7 @@ import { toast } from "react-toastify";
 import Input from "../../public/input/input";
 import Loader from "../../public/images/authLoader.svg";
 import { useRouter } from "next/router";
+import Logo from "../../public/logo.png";
 
 const Register = () => {
   let router = useRouter();
@@ -57,8 +58,13 @@ const Register = () => {
   return (
     <div className={`white ${classes.parent}`}>
       <div className={classes.container}>
+        <Link href="/">
+          <div className="center-flex">
+            <Image src={Logo} alt="Logo" width={120} height={100} />
+          </div>
+        </Link>
         <h2 className={classes.bigtext}>
-          Create your RCCG Fellowship account here
+          Create your RCCG Seed of Excellence account here
         </h2>
         <form>
           <div className={classes.form}>
