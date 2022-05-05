@@ -33,6 +33,6 @@ button {
 }
 select:focus,
 input:focus {
-  border-radius: 10px;
-  outline: 1px solid #28166f;
+  border: none;
+  outline: none;
 }

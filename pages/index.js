@@ -8,6 +8,7 @@ import Loader from "../public/images/loader.svg";
 import { useContext } from "react";
 import { AppContext } from "../public/context";
 import { useRouter } from "next/router";
+import Logo from "../public/logo.png";
 
 const Home = () => {
   let router = useRouter();
@@ -69,6 +70,9 @@ const Home = () => {
           <div className={`white ${classes.card}`}>
             <h2>Welcome to church</h2>
             <p>RCCG Seed of Excellence (Raising Excellent Minds)</p>
+            <div className={classes.logo}>
+              <Image src={Logo} width={180} height={150} alt="logo" />
+            </div>
             <div className={classes.img}>
               <Image src={People} width={150} height={150} alt="People" />
             </div>

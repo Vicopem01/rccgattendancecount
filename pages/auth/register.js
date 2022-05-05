@@ -18,31 +18,29 @@ import { months, num } from "../../public/constants";
 
 const Register = () => {
   let router = useRouter();
-  const [date, setDate] = useState({
-    date: "",
-    month: "",
-  });
   const [load, setLoad] = useState(false);
   const [data, setData] = useState({
     name: "",
     email: "",
-    DOB: "",
+    month: "",
+    date: "",
     gender: "Choose Gender",
     phone_number: "",
   });
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setData((prevState) => ({
-      ...prevState,
-      DOB: date.month + " " + date.date,
-    }));
+    const obj = {
+      name: data.name,
+      email: data.email,
+      DOB: data.month + " " + data.date,
+      gender: data.gender,
+      phone_number: data.phone_number,
+    };
     if (
-      data.name.length < 4 ||
+      data.name.length < 2 ||
       !emailCheck(data.email) ||
-      date.date === "" ||
-      date.date === "Select Date of birth" ||
-      date.month === "" ||
-      date.month === "Select Month of Birth" ||
+      data.month === "" ||
+      data.date === "" ||
       data.gender === "Choose Gender" ||
       data.phone_number.length < 11
     ) {
@@ -50,7 +48,7 @@ const Register = () => {
     } else {
       try {
         setLoad(true);
-        const res = await register(data);
+        const res = await register(obj);
         localStorage.setItem("token", res.data.token);
         router.push("/");
         setLoad(false);
@@ -148,7 +146,7 @@ const Register = () => {
               <Image src={Date} width={12} height={15} alt={"Date"} />
               <select
                 onChange={(e) =>
-                  setDate((prevState) => ({
+                  setData((prevState) => ({
                     ...prevState,
                     month: e.target.value,
                   }))
@@ -162,12 +160,12 @@ const Register = () => {
               </select>
             </label>
 
-            {date.month !== "" && (
+            {data.month !== "" && (
               <label className={classes.label}>
                 <Image src={Date} width={12} height={15} alt={"Date"} />
                 <select
                   onChange={(e) =>
-                    setDate((prevState) => ({
+                    setData((prevState) => ({
                       ...prevState,
                       date: e.target.value,
                     }))
