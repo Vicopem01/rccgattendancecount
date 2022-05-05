@@ -14,9 +14,14 @@ import Input from "../../public/input/input";
 import Loader from "../../public/images/authLoader.svg";
 import { useRouter } from "next/router";
 import Logo from "../../public/logo.png";
+import { months, num } from "../../public/constants";
 
 const Register = () => {
   let router = useRouter();
+  const [date, setDate] = useState({
+    date: "",
+    month: "",
+  });
   const [load, setLoad] = useState(false);
   const [data, setData] = useState({
     name: "",
@@ -27,10 +32,17 @@ const Register = () => {
   });
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setData((prevState) => ({
+      ...prevState,
+      DOB: date.month + " " + date.date,
+    }));
     if (
       data.name.length < 4 ||
       !emailCheck(data.email) ||
-      data.DOB === "" ||
+      date.date === "" ||
+      date.date === "Select Date of birth" ||
+      date.month === "" ||
+      date.month === "Select Month of Birth" ||
       data.gender === "Choose Gender" ||
       data.phone_number.length < 11
     ) {
@@ -114,6 +126,7 @@ const Register = () => {
               <span>
                 <Image src={Gender} alt="Email" width={20} height={20} />
               </span>
+
               <select
                 defaultValue={data.gender}
                 onChange={(e) =>
@@ -131,21 +144,43 @@ const Register = () => {
               </select>
             </label>
             <span className={classes.line}></span>
-            <Input
-              src={Date}
-              isValid={data.gender !== ""}
-              placeholder="Date of Birth"
-              onChange={(e) =>
-                setData((prevState) => ({
-                  ...prevState,
-                  DOB: e.target.value,
-                }))
-              }
-              value={data.DOB}
-              type="date"
-              message="Invalid date of birth"
-              name="date of birth"
-            />
+            <label className={classes.label}>
+              <Image src={Date} width={12} height={15} alt={"Date"} />
+              <select
+                onChange={(e) =>
+                  setDate((prevState) => ({
+                    ...prevState,
+                    month: e.target.value,
+                  }))
+                }
+              >
+                {months.map((month, index) => (
+                  <option key={index} value={month}>
+                    {month}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            {date.month !== "" && (
+              <label className={classes.label}>
+                <Image src={Date} width={12} height={15} alt={"Date"} />
+                <select
+                  onChange={(e) =>
+                    setDate((prevState) => ({
+                      ...prevState,
+                      date: e.target.value,
+                    }))
+                  }
+                >
+                  {num.map((day, index) => (
+                    <option value={day} key={index}>
+                      {day}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            )}
           </div>
           <div className={classes.links}>
             <Link href="/auth/login">Sign In</Link>
