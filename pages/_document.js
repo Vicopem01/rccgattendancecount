@@ -6,7 +6,7 @@ const Document = () => {
       <Head>
         <meta
           name="description"
-          content="RCCG Seed of joy attendance counter"
+          content="RCCG Seed of Excellence Attendance Counter"
         />
         <link rel="icon" href="/logo.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
